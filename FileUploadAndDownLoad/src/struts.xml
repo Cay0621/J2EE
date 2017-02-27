@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+  
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false"></constant>
+	
+	<!-- 设置编码格式 -->
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	
+	<!--设置开发模式-->
+	<constant name="struts.devMode" value="true"></constant>
+	
+	<constant name="struts.custom.i18n.resources" value="application"></constant>
+	
+	<package name="default" namespace="/" extends="struts-default">
+		<interceptors>
+			<interceptor-stack name="fileUploadInterceptor">
+				<interceptor-ref name="fileUpload">
+					<param name="allowedTypes">image/bmp,image/x-png,image/gif,image/jpeg</param>
+					<param name="maximumSize">2097152</param>
+				</interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="fileUploadInterceptor"></default-interceptor-ref>
+		
+		<global-results>
+			<result>/jsp/01.jsp</result>
+			<result name="input">/jsp/error.jsp</result>
+		</global-results>
+		
+	
+		<action name="singleupload" class="org.com.cay.action.SingleFileUploadAction">
+			<!-- 拦截器，限制文件类型及大小 ,此处使用默认的全局拦截器-->			
+		</action>
+		
+		<action name="multiupload" class="org.com.cay.action.MultiFileUploadAction">
+			<!-- 拦截器，限制文件类型及大小 ,此处使用默认的全局拦截器-->	
+		</action>
+		
+		<action name="download" class="org.com.cay.action.FileDownloadAction">
+			<param name="inputPath">/images/img2-lg.jpg</param>
+			<result name="downloadsuccess" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">8192</param>
+			</result>
+		</action>
+	</package>
+</struts>  

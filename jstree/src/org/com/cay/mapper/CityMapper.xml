@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.com.cay.mapper.CityMapper">
+	<resultMap type="org.com.cay.entity.CityNode" id="ResultToCityNode">
+		<id column="id" property="id" javaType="java.lang.String"/>
+		<result column="name" property="text" javaType="java.lang.String"/>
+	</resultMap>
+</mapper>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+    
+<struts>
+
+	<!-- <include file=""></include> -->
+	
+	<!-- 修改默认的后缀名,如果使用多个，用逗号隔开 -->
+	<constant name="struts.action.extension" value="do,action"></constant>
+	
+	<package name="default" namespace="/" extends="struts-default">
+		<!-- 通配符*，第一个*代表{1},依次类推 -->
+		<!-- 
+		<action name="helloworld_*" method="{1}" class="test.HelloWorldAction">
+			<result>/result.jsp</result>
+			<result name="{1}">/{1}.jsp</result>
+			<result name="{1}">/{1}.jsp</result>
+		</action>
+		 -->
+		<!-- <default-action-ref name="error" ></default-action-ref> -->
+		
+		<action name="error">
+		 	<result>/error.jsp</result>
+		 </action>
+		 
+		<action name="Hello_*_*" method="{2}" class="test.{1}Action">
+			<result>/result.jsp</result>
+			<result name="{2}">/{2}.jsp</result>
+			<result name="{2}">/{2}.jsp</result>
+		</action>
+		
+		<action name="LoginAction" method="login" class="action.LoginAction">
+			<result>/success.jsp</result>
+		</action>
+		
+		<action name="LoginAction1" method="login" class="action.LoginAction1">
+			<result>/success.jsp</result>
+		</action>
+		
+		<action name="LoginAction2" method="login" class="action.LoginAction2">
+			<result>/success.jsp</result>
+		</action>
+		
+		<action name="LoginAction3" method="login" class="action.LoginAction3">
+			<result>/success.jsp</result>
+			<result name="input">/login3.jsp</result>
+		</action>
+	</package>
+</struts>    

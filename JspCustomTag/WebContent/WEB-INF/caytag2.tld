@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+    version="2.0">
+    <tlib-version>1.0</tlib-version>
+    <short-name>caytag2</short-name>
+    <uri>/cay-tag2</uri>
+    
+    <tag>
+    	<name>dateInfo</name>
+    	<tag-class>org.com.cay.tag2.DisplayInfo</tag-class>
+    	<body-content>empty</body-content>
+    </tag>
+    
+    <tag>
+    	<name>displayOrSkipBody</name>
+    	<tag-class>org.com.cay.tag2.DisplayOrSkipBody</tag-class>
+    	<body-content>scriptless</body-content>
+    </tag>
+    
+    <tag>
+    	<name>skipPageOrEvalPage</name>
+    	<tag-class>org.com.cay.tag2.SkipPageOrEvalPage</tag-class>
+    	<body-content>empty</body-content>
+    </tag>
+    
+    <tag>
+    	<name>iteration</name>
+    	<tag-class>org.com.cay.tag2.IterationTagDemo</tag-class>
+    	<body-content>scriptless</body-content>
+    	<attribute>
+    		<name>items</name>
+    		<required>true</required>
+    		<rtexprvalue>true</rtexprvalue>
+    	</attribute>
+    	<attribute>
+    		<name>name</name>
+    		<required>true</required>
+    		<rtexprvalue>true</rtexprvalue>
+    	</attribute>
+    </tag>
+    
+    <tag>
+    	<name>modifyBodyContent</name>
+    	<tag-class>org.com.cay.tag2.ModifyBodyContent</tag-class>
+    	<body-content>scriptless</body-content>
+    </tag>
+    
+    <tag>
+    	<name>if</name>
+    	<tag-class>org.com.cay.tag2.IfTag</tag-class>
+    	<body-content>scriptless</body-content>
+    	<attribute>
+    		<name>test</name>
+    		<required>true</required>
+    		<rtexprvalue>true</rtexprvalue>
+    	</attribute>
+    </tag>
+    
+    <tag>
+    	<name>choose</name>
+    	<tag-class>org.com.cay.tag2.ChooseTag</tag-class>
+    	<body-content>scriptless</body-content>
+    </tag>
+    <tag>
+    	<name>when</name>
+    	<tag-class>org.com.cay.tag2.WhenTag</tag-class>
+    	<body-content>scriptless</body-content>
+    	<attribute>
+    		<name>test</name>
+    		<required>true</required>
+    		<rtexprvalue>true</rtexprvalue>
+    	</attribute>
+    </tag>
+    <tag>
+    	<name>otherwise</name>
+    	<tag-class>org.com.cay.tag2.OtherwiseTag</tag-class>
+    	<body-content>scriptless</body-content>
+    </tag>
+</taglib>

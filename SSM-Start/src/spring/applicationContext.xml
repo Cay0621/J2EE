@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:cache="http://www.springframework.org/schema/cache"
+
+	xsi:schemaLocation="
+    http://www.springframework.org/schema/context  
+    http://www.springframework.org/schema/context/spring-context-4.2.xsd  
+    http://www.springframework.org/schema/beans  
+    http://www.springframework.org/schema/beans/spring-beans-4.2.xsd  
+    http://www.springframework.org/schema/tx  
+    http://www.springframework.org/schema/tx/spring-tx-4.2.xsd  
+    http://www.springframework.org/schema/jdbc  
+    http://www.springframework.org/schema/jdbc/spring-jdbc-4.2.xsd  
+    http://www.springframework.org/schema/cache  
+    http://www.springframework.org/schema/cache/spring-cache-4.2.xsd  
+    http://www.springframework.org/schema/aop  
+    http://www.springframework.org/schema/aop/spring-aop-4.2.xsd  
+    http://www.springframework.org/schema/util  
+    http://www.springframework.org/schema/util/spring-util-4.2.xsd">
+
+    <!-- 本applicationContext.xml主要配置关于spring方面的AOP和IOC技术 -->
+    
+    <!-- 开启注解标签 -->
+	<context:annotation-config/>
+	
+    <!-- 配置注解扫描器 -->
+    <context:component-scan base-package="org.com.cay">
+    </context:component-scan>
+    
+    <!-- 加载资源文件 -->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    	<property name="locations">
+    		<list>
+    			<value>classpath:jdbc.properties</value>
+    		</list>
+    	</property>
+    </bean>
+    
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+    	<property name="driverClassName" value="${driver}"></property>
+    	<property name="url" value="${url}"></property>
+    	<property name="username" value="${username}"></property>
+    	<property name="password" value="${password}"></property>
+    </bean>
+    
+    <bean id="userDaoImpl" class="org.com.cay.dao.impl.UserDaoImpl">
+    	<property name="dataSource" ref="dataSource"></property>
+    </bean>
+    
+    <!-- 定义事务管理器 -->
+   	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+   		<property name="dataSource" ref="dataSource"></property>
+   	</bean>
+   	
+   	<!-- 定义事务策略 -->
+   	<tx:advice id="txAdvicer" transaction-manager="transactionManager">
+   		<tx:attributes>
+   			<!--所有以query等查询开头的方法都是只读的 -->
+   			<tx:method name="query*" read-only="true"/>
+   			<tx:method name="select*" read-only="true"/>
+   			<tx:method name="find*" read-only="true"/>
+   			<tx:method name="get*" read-only="true"/>
+   			<!--其他方法使用默认事务策略 -->
+   			<tx:method name="*" />
+   		</tx:attributes>
+   	</tx:advice>
+   	
+   	<aop:config>
+   		<!--pointcut元素定义一个切入点，
+   			execution中的第一个星号 用以匹配方法的返回类型，这里星号表明匹配所有返回类型。 
+   			org.com.cay.service.*.*(..)表明匹配org.com.cay.service包下的所有类的所有方法 -->
+   		<aop:pointcut id="txPointcut" expression="execution(* org.com.cay.service.*.*(..))" />
+   		
+   		<aop:advisor advice-ref="txAdvicer" pointcut-ref="txPointcut"/>
+   	</aop:config>
+   	
+</beans>

@@ -1,0 +1,23 @@
+div{
+	width: 500;
+	margin-top: 20px;	
+}
+
+table, td {
+	border: 1px solid black;
+}
+
+table {
+	border-collapse: collapse;
+	width: 200;
+	background: #f5efe7;
+}
+
+td {
+	height: 20px;
+	text-align: center;
+	width: 100px;
+}
+
+#tb2 td{
+}

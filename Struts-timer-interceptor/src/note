@@ -1,0 +1,10 @@
+1、编写拦截器类，继承AbstractInterceptor或者Interceptor类
+2、最主要重载intercept方法(有需要时重载init和destroy方法)
+3、
+	(1)在调用拦截器的invoke方法之前，表示action执行之前，
+	(2)调用invoke方法，表示执行action
+	(3)在invoke方法之后，表达action执行完成
+	
+4、在struts.xml配置文件中注册拦截器
+5、action引用拦截器,一旦在action中指定了拦截器，默认的defaultStack拦截器则不再生效，
+	所以在引用拦截器的时候，将默认的拦截器包含进去

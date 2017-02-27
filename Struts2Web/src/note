@@ -1,0 +1,17 @@
+1、action通配符*，在一个action标签内，第一个*对应{1},以此类推
+2、如果struts.xml很大，建议使用配置多个xml文件，便于管理和区分，在struts.xml中使用<include></include>进行包含
+3、修改action默认的后缀名:struts.action.extension
+	方法1：在struts.properties中使用键值对的形式，修改默认后缀名。如需多个，使用逗号分隔开
+		struts.action.extension=do,action,
+	方法2：在struts.xml中使用<constant></constant>标签
+		<constant name="struts.action.extension" value="do,action"></constant>
+	方法3：在web.xml中struts的filter中配置初始化参数
+		<filter>
+		  	<filter-name>struts2</filter-name>
+		  	<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+		  	<init-param>
+		  		<param-name>struts.action.extension</param-name>
+		  		<param-value>do,action</param-value>
+		  	</init-param>
+		 </filter>
+		

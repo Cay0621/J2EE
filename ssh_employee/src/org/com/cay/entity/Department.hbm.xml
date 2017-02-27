@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-12-27 10:35:31 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="org.com.cay.entity.Department" table="DEPARTMENT">
+        <id name="did" type="java.lang.Integer">
+            <column name="DID" />
+            <generator class="increment" />
+        </id>
+        <property name="dname" type="java.lang.String">
+            <column name="DNAME" />
+        </property>
+        <property name="ddesc" type="java.lang.String">
+            <column name="DDESC" />
+        </property>
+        
+        <!-- 配置关联关系映射 -->
+        <set name="employees" table="EMPLOYEE" inverse="true" cascade="delete" lazy="true"><!-- 级联删除 -->
+            <key>
+                <column name="dno" />
+            </key>
+            <one-to-many class="org.com.cay.entity.Employee" />
+        </set>
+    </class>
+</hibernate-mapping>

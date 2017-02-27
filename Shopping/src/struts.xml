@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- 修改默认的后缀名,如果使用多个，用逗号隔开 -->
+	<constant name="struts.action.extension" value="action"></constant>
+
+	<package name="default" namespace="/" extends="struts-default">
+		<action name="list" class="listAction" method="list">
+			<result>/WEB-INF/jsp/list.jsp</result>
+		</action>
+		<action name="modify" class="modifyAction" method="modify">
+			<result name="success" type="">/WEB-INF/jsp/new_list.jsp</result>
+		</action>
+	</package>
+</struts>    

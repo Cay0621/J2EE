@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-6-21 11:49:08 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="org.com.cay.entity.Account" table="ACCOUNT">
+        <id name="aid" type="java.lang.Integer">
+            <column name="AID" />
+            <generator class="increment" />
+        </id>
+        <property name="aname" type="java.lang.String">
+            <column name="ANAME" />
+        </property>
+        <property name="money" type="java.lang.Integer">
+            <column name="MONEY" />
+        </property>
+    </class>
+</hibernate-mapping>

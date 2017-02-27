@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="jquery-easyui-1.5.1/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="jquery-easyui-1.5.1/themes/icon.css">
+<style type="text/css">
+	.textbox{
+		height: 20px;
+		margin: 0;
+		padding: 0 5px;
+		box-sizing: content-box;
+	}
+</style>
+<script type="text/javascript" src="jquery-easyui-1.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="jquery-easyui-1.5.1/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+</head>
+<body>
+<!-- 
+	<table class="easyui-datagrid" data-options="width:500, showHeader:true, collapsible:true">
+		<thead>
+		<tr>
+			<th data-options="field:'ID', width:100">编号</th>
+			<th data-options="field:'NAME', width:100">姓名</th>
+			<th data-options="field:'PASSWORD', width:100">密码</th>
+			<th data-options="field:'AGE', width:100">年龄</th>
+			<th data-options="field:'BIRTHDAY', width:100">生日</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		</tbody>
+	</table> -->
+	
+	<table id="dataTable"></table>
+	
+	<div id="dg">
+		姓名:<input name="name" class="textbox"/>
+		密码:<input type="password" name="name" class="textbox"/>
+		年龄:<input name="age" class="easyui-numberbox"/>
+		生日:<input name="birthday" class="easyui-datebox"/>
+	</div>
+	<div id="tb">
+		<div>
+			<a href="#" id="add" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">添加</a>
+			<a href="#" id="edit" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-edit'">编辑</a>
+			<a href="#" id="delete" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-remove'">删除</a>
+			<a href="#" id="clear" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-clear'">清空</a>
+		</div>
+		<div style="margin: 0 5px;color: #333">
+			姓名:<input name="name" class="textbox" style="width: 80px;"/>
+			生日范围:<input id="dateFrom" name="date_from" class="easyui-datebox" data-options="width: 150"/>
+			- <input name="date_to" id="dateTo" class="easyui-datebox" data-options="width: 150"/>
+			<a href="#" id="search" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true">查询</a>
+		</div>
+	</div>
+</body>
+</html>

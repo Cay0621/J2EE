@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	namespace:必须与对应的接口全类名一致：接口类名和映射名一致，
+		即UserMapper.java的类名UserMapper对应于UserMapper.xml的UserMapper
+	crud的id:必须与对应接口的某个对应的方法名一致
+ -->
+<mapper namespace="org.com.cay.mapper.IUserMapper">	
+	<select id="getUser" parameterType="condition" resultType="user">
+		select * from user
+		<where>
+			<if test="condition.name != null and condition.name.length() > 0">
+				and username like '%${condition.name}%'	
+			</if>
+			<if test="condition.dateFrom != null and condition.dateTo != null">
+				and birthday between #{condition.dateFrom} and #{condition.dateTo}
+			</if>
+		</where>
+		limit #{condition.rowStart}, #{condition.rows}
+	</select>
+	
+	<select id="getTotal" parameterType="condition" resultType="int">
+		select count(*) from user
+		<where>
+			<if test="condition.name != null and condition.name.length() > 0">
+				and username like '%${condition.name}%'	
+			</if>
+			<if test="condition.dateFrom != null and condition.dateTo != null">
+				and birthday between #{condition.dateFrom} and #{condition.dateTo}
+			</if>
+		</where>
+	</select>
+</mapper>
